@@ -3,7 +3,7 @@ package com.retail.store.models;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name = "Customer_Order")
 @Table(name = "Customer_Order")
 public class Order {
     @Id
