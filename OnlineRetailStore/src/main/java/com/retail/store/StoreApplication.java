@@ -120,6 +120,16 @@ public class StoreApplication implements CommandLineRunner {
         ArrayList<Order> orders = new ArrayList<>();
         orders.add(new Order(1, 1, 1, 1, 150.0, 1,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+        orders.add(new Order(2, 2, 1, 1, 150.0, 1,
+                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+        orders.add(new Order(3, 3, 1, 1, 150.0, 1,
+                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+        orders.add(new Order(4, 4, 1, 1, 150.0, 1,
+                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+        orders.add(new Order(5, 1, 1, 2, 150.0, 1,
+                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+        orders.add(new Order(6, 2, 1, 3, 150.0, 1,
+                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
         for (Order order : orders) {
             orderService.createOrder(order);
         }
