@@ -1,6 +1,9 @@
 package com.retail.store;
 
+import com.retail.store.models.Customer;
+import com.retail.store.models.Order;
 import com.retail.store.models.Product;
+import com.retail.store.services.CustomerService;
 import com.retail.store.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -36,6 +39,15 @@ public class StoreApplication implements CommandLineRunner {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    CustomerService customerService;
+
+    @Override
+    public void run(String... strings) throws Exception {
+        insertProducts();
+        insertCustomers();
+    }
+
     void insertProducts() {
         ArrayList<Product> products = new ArrayList<>();
         products.add(new Product(1, "Quartz Belt Watch", 150.00,
@@ -59,8 +71,48 @@ public class StoreApplication implements CommandLineRunner {
         }
     }
 
-    @Override
-    public void run(String... strings) throws Exception {
-        insertProducts();
+    void insertCustomers() {
+        ArrayList<Customer> customers = new ArrayList<>();
+        customers.add(new Customer());
+        customers.add(new Customer());
+        customers.add(new Customer());
+
+        customers.get(0).setId(1);
+        customers.get(0).setEmail("zhao@gmail.com");
+        customers.get(0).setFirstName("A");
+        customers.get(0).setLastName("Zhao");
+        customers.get(0).setPassword(null);
+        customers.get(0).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
+
+        customers.get(1).setId(2);
+        customers.get(1).setEmail("qian@gmail.com");
+        customers.get(1).setFirstName("B");
+        customers.get(1).setLastName("qian");
+        customers.get(1).setPassword(null);
+        customers.get(1).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
+
+        customers.get(2).setId(3);
+        customers.get(2).setEmail("sun@gmail.com");
+        customers.get(2).setFirstName("C");
+        customers.get(2).setLastName("Sun");
+        customers.get(2).setPassword(null);
+        customers.get(2).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
+
+        customers.get(3).setId(4);
+        customers.get(3).setEmail("li@gmail.com");
+        customers.get(3).setFirstName("D");
+        customers.get(3).setLastName("Li");
+        customers.get(3).setPassword(null);
+        customers.get(3).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
+
+        for (Customer customer : customers) {
+            customerService.createCustomer(customer);
+        }
     }
+
+//    void insertOrders() {
+//        ArrayList<Order> orders = new ArrayList<>();
+//        for (Order order : orders) {
+//        }
+//    }
 }
