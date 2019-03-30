@@ -61,7 +61,7 @@ public class OrderDao {
     public ArrayList<Integer> fetchBestSellers(int amount) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        String hql = "SELECT Customer_Order.Product_ID, COUNT(Customer_Order.Product_ID) as Sell_Count FROM Customer_Order GROUP BY Product_ID ORDER BY Sell_Count DESC";
+        String hql = "SELECT c_order.productId, COUNT(c_order.productId) as Sell_Count FROM Customer_Order c_order GROUP BY Product_ID ORDER BY Sell_Count DESC";
         Query query = session.createQuery(hql);
         query.setMaxResults(amount);
         List<?> list = session.createQuery(hql).list();

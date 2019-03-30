@@ -1,11 +1,12 @@
 package com.retail.store.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(name = "Customer_Order")
 @Table(name = "Customer_Order")
-public class Order {
+public class Order implements Serializable {
     @Id
     @Column(name = "Order_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
