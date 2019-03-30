@@ -3,9 +3,11 @@ package com.retail.store;
 import com.retail.store.models.Customer;
 import com.retail.store.models.Order;
 import com.retail.store.models.Product;
+import com.retail.store.models.Supplier;
 import com.retail.store.services.CustomerService;
 import com.retail.store.services.OrderService;
 import com.retail.store.services.ProductService;
+import com.retail.store.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,10 +17,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 @SpringBootApplication
 public class StoreApplication implements CommandLineRunner {
@@ -46,12 +45,15 @@ public class StoreApplication implements CommandLineRunner {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    SupplierService supplierService;
+
     @Override
     public void run(String... strings) throws Exception {
         insertProducts();
         insertCustomers();
+        insertSuppliers();
         insertOrders();
-        orderService.fetchBestSellers();
     }
 
     void insertProducts() {
@@ -87,28 +89,28 @@ public class StoreApplication implements CommandLineRunner {
         customers.get(0).setEmail("zhao@gmail.com");
         customers.get(0).setFirstName("A");
         customers.get(0).setLastName("Zhao");
-        customers.get(0).setPassword(null);
+        customers.get(0).setPassword("1234");
         customers.get(0).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
 
         customers.get(1).setId(2);
         customers.get(1).setEmail("qian@gmail.com");
         customers.get(1).setFirstName("B");
         customers.get(1).setLastName("qian");
-        customers.get(1).setPassword(null);
+        customers.get(1).setPassword("1234");
         customers.get(1).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
 
         customers.get(2).setId(3);
         customers.get(2).setEmail("sun@gmail.com");
         customers.get(2).setFirstName("C");
         customers.get(2).setLastName("Sun");
-        customers.get(2).setPassword(null);
+        customers.get(2).setPassword("1234");
         customers.get(2).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
 
         customers.get(3).setId(4);
         customers.get(3).setEmail("li@gmail.com");
         customers.get(3).setFirstName("D");
         customers.get(3).setLastName("Li");
-        customers.get(3).setPassword(null);
+        customers.get(3).setPassword("1234");
         customers.get(3).setRegisterDate(new GregorianCalendar(2019, Calendar.MARCH, 29).getTime());
 
         for (Customer customer : customers) {
@@ -116,20 +118,59 @@ public class StoreApplication implements CommandLineRunner {
         }
     }
 
+    void insertSuppliers() {
+        ArrayList<Supplier> suppliers = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            suppliers.add(new Supplier());
+        }
+
+        suppliers.get(0).setId(1);
+        suppliers.get(0).setEmail("zhou@gmail.com");
+        suppliers.get(0).setFirstName("E");
+        suppliers.get(0).setLastName("Zhou");
+        suppliers.get(0).setPassword("1234");
+        suppliers.get(0).setSSN(123456789);
+
+        suppliers.get(1).setId(2);
+        suppliers.get(1).setEmail("wu@gmail.com");
+        suppliers.get(1).setFirstName("F");
+        suppliers.get(1).setLastName("Wu");
+        suppliers.get(1).setPassword("1234");
+        suppliers.get(1).setSSN(123456789);
+
+        suppliers.get(2).setId(3);
+        suppliers.get(2).setEmail("zheng@gmail.com");
+        suppliers.get(2).setFirstName("G");
+        suppliers.get(2).setLastName("Zheng");
+        suppliers.get(2).setPassword("1234");
+        suppliers.get(2).setSSN(123456789);
+
+        suppliers.get(3).setId(4);
+        suppliers.get(3).setEmail("wang@gmail.com");
+        suppliers.get(3).setFirstName("H");
+        suppliers.get(3).setLastName("Wang");
+        suppliers.get(3).setPassword("1234");
+        suppliers.get(3).setSSN(123456789);
+
+        for (Supplier supplier : suppliers) {
+            supplierService.createSupplier(supplier);
+        }
+    }
+
     void insertOrders() {
+        Random random = new Random();
         ArrayList<Order> orders = new ArrayList<>();
-        orders.add(new Order(1, 1, 1, 1, 150.0, 1,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
-        orders.add(new Order(2, 2, 1, 1, 150.0, 1,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
-        orders.add(new Order(3, 3, 1, 1, 150.0, 1,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
-        orders.add(new Order(4, 4, 1, 1, 150.0, 1,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
-        orders.add(new Order(5, 1, 1, 2, 150.0, 1,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
-        orders.add(new Order(6, 2, 1, 3, 150.0, 1,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+        int orderId = 1;
+        for (int customerId = 1; customerId <= 4; customerId++) {
+            for (int supplierId = 1; supplierId <= 4; supplierId++) {
+                for (int productId = 1; productId <= 8; productId++) {
+                    if (random.nextInt() % 2 == 0) {
+                        orders.add(new Order(orderId, customerId, supplierId, productId, 150.0, 1,
+                                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+                    }
+                }
+            }
+        }
         for (Order order : orders) {
             orderService.createOrder(order);
         }

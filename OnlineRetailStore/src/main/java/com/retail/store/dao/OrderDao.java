@@ -58,21 +58,22 @@ public class OrderDao {
         session.close();
     }
 
-    public ArrayList<Integer> fetchBestSellers(int amount) {
+    public ArrayList<ProductCount> fetchBestSellers(int amount) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         String hql = "SELECT c_order.productId, COUNT(c_order.productId) as Sell_Count FROM Customer_Order c_order GROUP BY Product_ID ORDER BY Sell_Count DESC";
         Query query = session.createQuery(hql);
         query.setMaxResults(amount);
         List<?> list = session.createQuery(hql).list();
-        ArrayList<Integer> products = new ArrayList<>();
+        ArrayList<ProductCount> productCounts = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             Object[] row = (Object[]) list.get(i);
-            System.out.println(row[0] + ", " + row[1]);
-            products.add((Integer) row[0]);
+            productCounts.add(new ProductCount(
+                    ((Integer) row[0]).intValue(),
+                    ((Long) row[1]).intValue()));
         }
         session.getTransaction().commit();
         session.close();
-        return products;
+        return productCounts;
     }
 }

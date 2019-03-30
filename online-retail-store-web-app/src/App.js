@@ -15,13 +15,14 @@ class App extends Component {
         fetch("http://localhost:8080/trending_products/?amount=8")
             .then(res => res.json())
             .then(data =>
-                this.setState({trendingProducts: data, bestSellers: data}))
+                this.setState({trendingProducts: data}))
             .catch(e => console.log(e))
-        // fetch("http://localhost:8080/trending_products/?amount=8")
-        //     .then(res => res.json())
-        //     .then(data =>
-        //         this.setState({bestSellers: data}))
-        //     .catch(e => console.log(e))
+
+        fetch("http://localhost:8080/best_sellers/?amount=8")
+            .then(res => res.json())
+            .then(data =>
+                this.setState({bestSellers: data}))
+            .catch(e => console.log(e))
     }
 
     trendingProduct(title, imageLink, price) {

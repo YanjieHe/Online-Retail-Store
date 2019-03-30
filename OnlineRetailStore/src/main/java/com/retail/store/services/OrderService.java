@@ -1,9 +1,12 @@
 package com.retail.store.services;
 
 import com.retail.store.dao.OrderDao;
+import com.retail.store.dao.ProductCount;
 import com.retail.store.models.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class OrderService {
@@ -18,7 +21,7 @@ public class OrderService {
         orderDao.createOrder(order);
     }
 
-    public void fetchBestSellers() {
-        orderDao.fetchBestSellers(8);
+    public ArrayList<ProductCount> fetchBestSellers(int amount) {
+        return orderDao.fetchBestSellers(amount);
     }
 }
