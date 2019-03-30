@@ -70,7 +70,4 @@ public class ProductDao {
         return products;
     }
 
-    public ArrayList<Product> fetchBestSellers(int amount) {
-        return null;
-    }
 }

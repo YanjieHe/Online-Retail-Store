@@ -4,6 +4,7 @@ import com.retail.store.models.Customer;
 import com.retail.store.models.Order;
 import com.retail.store.models.Product;
 import com.retail.store.services.CustomerService;
+import com.retail.store.services.OrderService;
 import com.retail.store.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -42,10 +43,15 @@ public class StoreApplication implements CommandLineRunner {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    OrderService orderService;
+
     @Override
     public void run(String... strings) throws Exception {
         insertProducts();
         insertCustomers();
+        insertOrders();
+        orderService.fetchBestSellers();
     }
 
     void insertProducts() {
@@ -73,9 +79,9 @@ public class StoreApplication implements CommandLineRunner {
 
     void insertCustomers() {
         ArrayList<Customer> customers = new ArrayList<>();
-        customers.add(new Customer());
-        customers.add(new Customer());
-        customers.add(new Customer());
+        for (int i = 0; i < 4; i++) {
+            customers.add(new Customer());
+        }
 
         customers.get(0).setId(1);
         customers.get(0).setEmail("zhao@gmail.com");
@@ -110,9 +116,12 @@ public class StoreApplication implements CommandLineRunner {
         }
     }
 
-//    void insertOrders() {
-//        ArrayList<Order> orders = new ArrayList<>();
-//        for (Order order : orders) {
-//        }
-//    }
+    void insertOrders() {
+        ArrayList<Order> orders = new ArrayList<>();
+        orders.add(new Order(1, 1, 1, 1, 150.0, 1,
+                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
+        for (Order order : orders) {
+            orderService.createOrder(order);
+        }
+    }
 }

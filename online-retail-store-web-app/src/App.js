@@ -1,23 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-// import "./vendors/bootstrap/bootstrap.min.css";
-// import "./vendors/fontawesome/css/all.min.css";
-// import "./vendors/themify-icons/themify-icons.css";
-// import "./vendors/nice-select/nice-select.css";
-// import "./vendors/owl-carousel/owl.theme.default.min.css";
-// import "./vendors/owl-carousel/owl.carousel.min.css";
-// import "./css/style.css";
-
-
-// import "./vendors/jquery/jquery-3.2.1.min.js";
-// import "./vendors/bootstrap/bootstrap.bundle.min.js";
-// import "./vendors/skrollr.min.js";
-// import "./vendors/owl-carousel/owl.carousel.min.js";
-// import "./vendors/nice-select/jquery.nice-select.min.js";
-// import "./vendors/jquery.ajaxchimp.min.js";
-// import "./vendors/mail-script.js";
-// import "./js/main.js";
 
 class App extends Component {
     constructor(props) {
@@ -363,7 +344,6 @@ class App extends Component {
                     </div>
                 </section>
 
-
             </main>
 
 
@@ -459,24 +439,6 @@ class App extends Component {
                 </div>
             </footer>
         </div>);
-        // return (
-        //     <div className="App">
-        //         <header className="App-header">
-        //             <img src={logo} className="App-logo" alt="logo"/>
-        //             <p>
-        //                 Edit <code>src/App.js</code> and save to reload.
-        //             </p>
-        //             <a
-        //                 className="App-link"
-        //                 href="https://reactjs.org"
-        //                 target="_blank"
-        //                 rel="noopener noreferrer"
-        //             >
-        //                 Learn React
-        //             </a>
-        //         </header>
-        //     </div>
-        // );
     }
 }
 
