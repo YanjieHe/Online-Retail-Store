@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98101b4d-10bf-406e-92ef-48e49e13c284" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/services/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/StoreApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/StoreApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/ProductDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-    </list>
+    <list default="true" id="98101b4d-10bf-406e-92ef-48e49e13c284" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -25,11 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="483">
+              <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -105,7 +93,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -194,15 +182,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553820269630</updated>
-      <workItem from="1553820271189" duration="10968000" />
+      <workItem from="1553820271189" duration="11575000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10968000" />
+    <option name="totallyTimeSpent" value="11575000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
@@ -307,11 +295,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="483">
+          <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
         </state>
       </provider>
     </entry>
