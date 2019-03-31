@@ -49,8 +49,12 @@ public class CustomerController {
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Object> customerInformation(
             @PathVariable("sessionId") int sessionId) {
-        int customerId = sessions.get(sessionId);
-        Customer customer = customerService.fetchCustomerById(customerId);
-        return new ResponseEntity<>(customer, HttpStatus.OK);
+        if (sessions.containsKey(sessionId)) {
+            int customerId = sessions.get(sessionId);
+            Customer customer = customerService.fetchCustomerById(customerId);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 }
