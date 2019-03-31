@@ -7,8 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Map;
 
 @RestController
 public class CustomerController {
@@ -25,12 +24,13 @@ public class CustomerController {
     @RequestMapping(value = "/customer_login", method = RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Object> customerLogin(
-            @RequestParam(name = "email", required = true) String email,
-            @RequestParam(name = "password", required = true) String password) {
+            @RequestBody Map<String, Object> params) {
+        String email = params.get("email").toString();
+        String password = params.get("password").toString();
         if (customerService.customerExists(email, password)) {
-            return new ResponseEntity<>("ok", HttpStatus.OK);
+            return new ResponseEntity<>("success", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
         }
     }
 }

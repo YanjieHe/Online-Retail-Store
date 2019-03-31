@@ -25,10 +25,11 @@ class Login extends React.Component {
             },
             body: JSON.stringify({
                 email: this.state.email,
-                password: this.state.password,
+                password: this.state.password
             })
         })
-            .then(res => res.text().then(text => alert(text)))
+            .then(res => res.text())
+            .then(text => console.log(text))
             .catch(e => console.log(e));
         event.preventDefault();
     }
