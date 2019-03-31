@@ -48,7 +48,7 @@ class Header extends React.Component {
                         </button>
                         <div className="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul className="nav navbar-nav menu_nav ml-auto mr-auto">
-                                <li className="nav-item active"><a className="nav-link" href="index.html">Home</a></li>
+                                <li className="nav-item active"><NavLink className="nav-link" to="/">Home</NavLink></li>
                                 <li className="nav-item submenu dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown"
                                        role="button"

@@ -5,6 +5,7 @@ import $ from 'jquery'
 import BestSellers from "./BestSellers";
 import {instanceOf} from 'prop-types';
 import {withCookies, Cookies} from 'react-cookie';
+import {NavLink} from "react-router-dom";
 
 
 class App extends Component {
@@ -18,20 +19,12 @@ class App extends Component {
             trendingProducts: []
         };
         this.trendingProduct = this.trendingProduct.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
         fetch("http://localhost:8080/trending_products/?amount=8")
             .then(res => res.json())
             .then(data => this.setState({trendingProducts: data}))
-            .catch(e => console.log(e))
-    }
-
-    handleClick(event, productId) {
-        fetch("http://localhost:8080/product_information/" + productId)
-            .then(res => res.json())
-            .then(data => console.log(data))
             .catch(e => console.log(e))
     }
 
@@ -42,8 +35,10 @@ class App extends Component {
                     <img className="card-img" src={imageLink} alt=""/>
                     <ul className="card-product__imgOverlay">
                         <li>
-                            <button onClick={(event) => this.handleClick(event, productId)}>
-                                <i className="ti-search"></i></button>
+                            <NavLink className="nav-link"
+                                     to={"/product/" + productId}>
+                                <button><i className="ti-search"></i></button>
+                            </NavLink>
                         </li>
                         <li>
                             <button><i className="ti-shopping-cart"></i></button>
