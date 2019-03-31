@@ -12,14 +12,24 @@ class Header extends React.Component {
         super(props);
         const {cookies} = props;
         this.state = {
-            userId: cookies.get('userId') || '',
-            firstName: cookies.get('firstName') || '',
-            lastName: cookies.get('lastName') || ''
+            sessionId: cookies.get('sessionId') || '',
+            firstName: "",
+            lastName: ""
         }
     }
 
     componentWillMount() {
-
+        fetch('http://localhost:8080/customer_information/' + this.state.sessionId, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(json => {
+                this.setState({firstName: json.firstName, lastName: json.lastName})
+            })
     }
 
     render() {
@@ -97,11 +107,14 @@ class Header extends React.Component {
                                         className="nav-shop__circle">3</span>
                                     </button>
                                 </li>
-                                {this.state.userId === '' ? <span></span> :
-                                    <li className="nav-item">
-                                        Welcome, {this.state.firstName} {this.state.lastName}
+                                {this.state.sessionId === ''
+                                    ? <li className="nav-item">
+                                        <a className="button button-header" href="#">Buy Now</a>
+                                    </li>
+                                    : <li className="nav-item">
+                                        <strong> Welcome, {this.state.firstName} {this.state.lastName}</strong>
                                     </li>}
-                                <li className="nav-item"><a className="button button-header" href="#">Buy Now</a></li>
+
                             </ul>
                         </div>
                     </div>

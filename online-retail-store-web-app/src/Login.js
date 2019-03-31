@@ -37,17 +37,13 @@ class Login extends React.Component {
         })
             .then(res => {
                 if (res.ok) {
-                    return res.json();
+                    return res.text();
                 }
             })
-            .then(json => {
-                if (json) {
+            .then(text => {
+                if (text) {
                     const {cookies} = this.props;
-                    console.log(json);
-                    cookies.set('userId', json.id, {path: '/'});
-                    cookies.set('firstName', json.firstName, {path: '/'});
-                    cookies.set('lastName', json.lastName, {path: '/'});
-                    cookies.set('email', json.email, {path: '/'});
+                    cookies.set("sessionId", text, {path: '/'});
                     this.props.history.push('/');
                 } else {
                     alert("fail");

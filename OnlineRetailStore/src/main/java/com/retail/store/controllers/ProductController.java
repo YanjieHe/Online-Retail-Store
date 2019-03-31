@@ -5,10 +5,7 @@ import com.retail.store.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -24,5 +21,10 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-
+    @RequestMapping(value = "/product_information/{productId}", method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<Object> fetchProductById(@PathVariable("productId") int productId) {
+        Product product = productService.fetchProductById(productId);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
 }

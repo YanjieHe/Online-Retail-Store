@@ -7,12 +7,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
+
 
 @RestController
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
+
+    private static HashMap<Integer, Integer> sessions;
+
+    static {
+        sessions = new HashMap<>();
+    }
 
     @RequestMapping(value = "/get_customer_by_id", method = RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
@@ -29,9 +37,20 @@ public class CustomerController {
         String password = params.get("password").toString();
         if (customerService.customerExists(email, password)) {
             Customer customer = customerService.findCustomerByEmail(email);
-            return new ResponseEntity<>(customer, HttpStatus.OK);
+            int sessionId = sessions.size();
+            sessions.put(sessionId, customer.getId());
+            return new ResponseEntity<>(Integer.toString(sessionId), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("-1", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(value = "/customer_information/{sessionId}", method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<Object> customerInformation(
+            @PathVariable("sessionId") int sessionId) {
+        int customerId = sessions.get(sessionId);
+        Customer customer = customerService.fetchCustomerById(customerId);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 }

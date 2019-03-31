@@ -14,23 +14,26 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        const {cookies} = props;
         this.state = {
             trendingProducts: []
         };
         this.trendingProduct = this.trendingProduct.bind(this);
+        this.handleClicked = this.handleClicked.bind(this);
     }
 
     componentDidMount() {
         fetch("http://localhost:8080/trending_products/?amount=8")
             .then(res => res.json())
-            .then(data =>
-                this.setState({trendingProducts: data}))
+            .then(data => this.setState({trendingProducts: data}))
             .catch(e => console.log(e))
 
     }
 
-    trendingProduct(title, imageLink, price) {
+    handleClicked() {
+
+    }
+
+    trendingProduct(productId, title, imageLink, price) {
         return (<div className="col-md-6 col-lg-4 col-xl-3">
             <div className="card text-center card-product">
                 <div className="card-product__img">
@@ -119,7 +122,7 @@ class App extends Component {
                             </div>
                             <div className="row">
                                 {this.state.trendingProducts.map(product =>
-                                    this.trendingProduct(product.name, product.imageLink, product.price))}
+                                    this.trendingProduct(product.id, product.name, product.imageLink, product.price))}
                             </div>
                         </div>
                     </section>
