@@ -29,7 +29,7 @@ class Login extends React.Component {
             })
         })
             .then(res => res.text())
-            .then(text => console.log(text))
+            .then(text => alert(text))
             .catch(e => console.log(e));
         event.preventDefault();
     }
