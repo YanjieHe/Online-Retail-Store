@@ -18,7 +18,7 @@ class App extends Component {
             trendingProducts: []
         };
         this.trendingProduct = this.trendingProduct.bind(this);
-        this.handleClicked = this.handleClicked.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -26,11 +26,13 @@ class App extends Component {
             .then(res => res.json())
             .then(data => this.setState({trendingProducts: data}))
             .catch(e => console.log(e))
-
     }
 
-    handleClicked() {
-
+    handleClick(event, productId) {
+        fetch("http://localhost:8080/product_information/" + productId)
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(e => console.log(e))
     }
 
     trendingProduct(productId, title, imageLink, price) {
@@ -40,7 +42,8 @@ class App extends Component {
                     <img className="card-img" src={imageLink} alt=""/>
                     <ul className="card-product__imgOverlay">
                         <li>
-                            <button><i className="ti-search"></i></button>
+                            <button onClick={(event) => this.handleClick(event, productId)}>
+                                <i className="ti-search"></i></button>
                         </li>
                         <li>
                             <button><i className="ti-shopping-cart"></i></button>
