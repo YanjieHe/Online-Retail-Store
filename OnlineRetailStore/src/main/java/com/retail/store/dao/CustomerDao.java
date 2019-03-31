@@ -76,4 +76,16 @@ public class CustomerDao {
         session.close();
         return result;
     }
+
+    public Customer findCustomerByEmail(String email) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        String hql = "FROM Customer WHERE email = '" + email + "'";
+        Query query = session.createQuery(hql);
+        query.setMaxResults(1);
+        Customer customer = (Customer) query.list().get(0);
+        session.getTransaction().commit();
+        session.close();
+        return customer;
+    }
 }

@@ -22,4 +22,8 @@ public class CustomerService {
     public boolean customerExists(String email, String password) {
         return customerDao.customerExists(email, password);
     }
+
+    public Customer findCustomerByEmail(String email) {
+        return customerDao.findCustomerByEmail(email);
+    }
 }

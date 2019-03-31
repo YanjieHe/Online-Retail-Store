@@ -3,9 +3,18 @@ import Header from './Header'
 import Footer from './Footer'
 import $ from 'jquery'
 import BestSellers from "./BestSellers";
+import {instanceOf} from 'prop-types';
+import {withCookies, Cookies} from 'react-cookie';
+
+
 class App extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     constructor(props) {
         super(props);
+        const {cookies} = props;
         this.state = {
             trendingProducts: []
         };
@@ -249,4 +258,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withCookies(App);

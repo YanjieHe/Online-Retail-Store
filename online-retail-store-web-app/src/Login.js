@@ -1,7 +1,14 @@
 import React from 'react';
 import Header from "./Header";
+import {withRouter} from 'react-router-dom';
+import {instanceOf} from 'prop-types';
+import {withCookies, Cookies} from 'react-cookie';
 
 class Login extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -28,8 +35,24 @@ class Login extends React.Component {
                 password: this.state.password
             })
         })
-            .then(res => res.text())
-            .then(text => alert(text))
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+            .then(json => {
+                if (json) {
+                    const {cookies} = this.props;
+                    console.log(json);
+                    cookies.set('userId', json.id, {path: '/'});
+                    cookies.set('firstName', json.firstName, {path: '/'});
+                    cookies.set('lastName', json.lastName, {path: '/'});
+                    cookies.set('email', json.email, {path: '/'});
+                    this.props.history.push('/');
+                } else {
+                    alert("fail");
+                }
+            })
             .catch(e => console.log(e));
         event.preventDefault();
     }
@@ -114,4 +137,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withCookies(withRouter(Login));

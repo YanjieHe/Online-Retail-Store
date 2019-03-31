@@ -1,7 +1,27 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
+import {instanceOf} from 'prop-types';
+import {withCookies, Cookies} from 'react-cookie';
 
 class Header extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
+    constructor(props) {
+        super(props);
+        const {cookies} = props;
+        this.state = {
+            userId: cookies.get('userId') || '',
+            firstName: cookies.get('firstName') || '',
+            lastName: cookies.get('lastName') || ''
+        }
+    }
+
+    componentWillMount() {
+
+    }
+
     render() {
         return (<header className="header_area">
             <div className="main_menu">
@@ -77,6 +97,10 @@ class Header extends React.Component {
                                         className="nav-shop__circle">3</span>
                                     </button>
                                 </li>
+                                {this.state.userId === '' ? <span></span> :
+                                    <li className="nav-item">
+                                        Welcome, {this.state.firstName} {this.state.lastName}
+                                    </li>}
                                 <li className="nav-item"><a className="button button-header" href="#">Buy Now</a></li>
                             </ul>
                         </div>
@@ -87,4 +111,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+export default withCookies(Header);

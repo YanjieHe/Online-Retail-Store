@@ -28,7 +28,8 @@ public class CustomerController {
         String email = params.get("email").toString();
         String password = params.get("password").toString();
         if (customerService.customerExists(email, password)) {
-            return new ResponseEntity<>("success", HttpStatus.OK);
+            Customer customer = customerService.findCustomerByEmail(email);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
         }
