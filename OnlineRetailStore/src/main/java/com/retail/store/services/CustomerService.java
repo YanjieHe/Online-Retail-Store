@@ -18,4 +18,8 @@ public class CustomerService {
     public void createCustomer(Customer customer) {
         customerDao.createCustomer(customer);
     }
+
+    public boolean customerExists(String email, String password) {
+        return customerDao.customerExists(email, password);
+    }
 }

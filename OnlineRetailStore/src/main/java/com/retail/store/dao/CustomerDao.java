@@ -1,6 +1,7 @@
 package com.retail.store.dao;
 
 import com.retail.store.models.Customer;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,23 @@ public class CustomerDao {
 
         session.getTransaction().commit();
         session.close();
+    }
+
+    public boolean customerExists(String email, String password) {
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        String hql = "FROM Customer WHERE email = '" + email + "' AND password = '" + password + "'";
+        Query query = session.createQuery(hql);
+        query.setMaxResults(1);
+        boolean result;
+        if (query.list().size() == 1) {
+            result = true;
+        } else {
+            result = false;
+        }
+        session.getTransaction().commit();
+        session.close();
+        return result;
     }
 }

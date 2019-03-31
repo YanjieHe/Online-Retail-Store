@@ -5,10 +5,10 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
+            email: "",
             password: ""
         };
-        this.handleChange=this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -17,7 +17,19 @@ class Login extends React.Component {
     }
 
     handleSubmit(event) {
-        alert("username: " + this.state.username + ", password: " + this.state.password);
+        fetch('http://localhost:8080/customer_login/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password,
+            })
+        })
+            .then(res => res.text().then(text => alert(text)))
+            .catch(e => console.log(e));
         event.preventDefault();
     }
 
@@ -58,11 +70,11 @@ class Login extends React.Component {
                             <h3>Log in to enter</h3>
                             <form className="row login_form" action="#/" id="contactForm" onSubmit={this.handleSubmit}>
                                 <div className="col-md-12 form-group">
-                                    <input type="text" className="form-control" id="name" name="username"
-                                           placeholder="Username" onFocus="this.placeholder = ''"
-                                           value={this.state.username}
+                                    <input type="text" className="form-control" id="name" name="email"
+                                           placeholder="Email" onFocus="this.placeholder = ''"
+                                           value={this.state.email}
                                            onChange={this.handleChange}
-                                           onBlur="this.placeholder = 'Username'"/>
+                                           onBlur="this.placeholder = 'email'"/>
                                 </div>
                                 <div className="col-md-12 form-group">
                                     <input type="text" className="form-control" id="name" name="password"
