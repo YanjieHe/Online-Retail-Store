@@ -58,21 +58,21 @@ public class StoreApplication implements CommandLineRunner {
 
     void insertProducts() {
         ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(1, 1, "Quartz Belt Watch", 150.00,
+        products.add(new Product(1, "Quartz Belt Watch", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product1.png", ""));
-        products.add(new Product(2, 1, "Women Freshwash", 150.00,
+        products.add(new Product(2, "Women Freshwash", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product2.png", ""));
-        products.add(new Product(3, 1, "Room Flash Light", 150.00,
+        products.add(new Product(3, "Room Flash Light", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product3.png", ""));
-        products.add(new Product(4, 1, "Room Flash Light", 150.00,
+        products.add(new Product(4, "Room Flash Light", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product4.png", ""));
-        products.add(new Product(5, 2, "Man Office Bag", 150.00,
+        products.add(new Product(5, "Man Office Bag", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product5.png", ""));
-        products.add(new Product(6, 2, "Charging Car", 150.00,
+        products.add(new Product(6, "Charging Car", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product6.png", ""));
-        products.add(new Product(7, 3, "Blutooth Speaker", 150.00,
+        products.add(new Product(7, "Blutooth Speaker", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product7.png", ""));
-        products.add(new Product(8, 4, "Charging Car", 150.00,
+        products.add(new Product(8, "Charging Car", 150.00,
                 new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product8.png", ""));
         for (Product product : products) {
             productService.createProduct(product);

@@ -4,15 +4,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@IdClass(ProductCompositeKey.class)
 public class Product {
     @Id
     @Column(name = "Product_ID")
     private Integer productId;
-
-    @Id
-    @Column(name = "Supplier_ID")
-    private Integer supplierId;
 
     @Column(name = "Name")
     private String name;
@@ -33,9 +28,8 @@ public class Product {
 
     }
 
-    public Product(Integer productId,Integer supplierId, String name, Double price, Date date, String imageLink, String description) {
+    public Product(Integer productId, String name, Double price, Date date, String imageLink, String description) {
         this.productId = productId;
-        this.supplierId = supplierId;
         this.name = name;
         this.price = price;
         this.date = date;
@@ -89,13 +83,5 @@ public class Product {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
-    }
-
-    public Integer getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
     }
 }
