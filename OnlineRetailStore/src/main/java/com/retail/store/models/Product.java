@@ -1,15 +1,18 @@
 package com.retail.store.models;
 
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@IdClass(ProductCompositeKey.class)
 public class Product {
     @Id
     @Column(name = "Product_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer ID;
+    private Integer productId;
+
+    @Id
+    @Column(name = "Supplier_ID")
+    private Integer supplierId;
 
     @Column(name = "Name")
     private String name;
@@ -30,21 +33,14 @@ public class Product {
 
     }
 
-    public Product(Integer ID, String name, Double price, Date date, String imageLink, String description) {
-        this.ID = ID;
+    public Product(Integer productId,Integer supplierId, String name, Double price, Date date, String imageLink, String description) {
+        this.productId = productId;
+        this.supplierId = supplierId;
         this.name = name;
         this.price = price;
         this.date = date;
         this.imageLink = imageLink;
         this.description = description;
-    }
-
-    public Integer getID() {
-        return ID;
-    }
-
-    public void setID(Integer ID) {
-        this.ID = ID;
     }
 
     public String getName() {
@@ -85,5 +81,21 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Integer getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
     }
 }
