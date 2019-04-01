@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import Header from './Header'
 import Footer from './Footer'
-import $ from 'jquery'
-import BestSellers from "./BestSellers";
 import {NavLink} from "react-router-dom";
 
 
@@ -20,11 +18,12 @@ class App extends Component {
         fetch("http://localhost:8080/trending_products/?amount=8")
             .then(res => res.json())
             .then(data => this.setState({trendingProducts: data}))
-            .catch(e => console.log(e))
+            .catch(e => console.log(e));
+
         fetch("http://localhost:8080/best_sellers/?amount=8")
             .then(res => res.json())
             .then(data => this.setState({bestSellers: data}))
-            .catch(e => console.log(e))
+            .catch(e => console.log(e));
     }
 
     productSquare(productId, title, imageLink, price) {

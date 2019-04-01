@@ -15,4 +15,10 @@ public class ShoppingCartCompositeKey implements Serializable {
     public ShoppingCartCompositeKey() {
 
     }
+
+    public ShoppingCartCompositeKey(Integer customerId, Integer supplierId, Integer productId) {
+        this.customerId = customerId;
+        this.supplierId = supplierId;
+        this.productId = productId;
+    }
 }

@@ -1,7 +1,6 @@
 package com.retail.store.dao;
 
 import com.retail.store.models.Order;
-import com.retail.store.models.Product;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
