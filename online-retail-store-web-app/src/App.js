@@ -29,8 +29,7 @@ class App extends Component {
                     <img className="card-img" src={imageLink} alt=""/>
                     <ul className="card-product__imgOverlay">
                         <li>
-                            <NavLink className="nav-link"
-                                     to={"/product/" + productId}>
+                            <NavLink to={"/product/" + productId}>
                                 <button><i className="ti-search"></i></button>
                             </NavLink>
                         </li>
