@@ -3,16 +3,10 @@ import Header from './Header'
 import Footer from './Footer'
 import $ from 'jquery'
 import BestSellers from "./BestSellers";
-import {instanceOf} from 'prop-types';
-import {withCookies, Cookies} from 'react-cookie';
 import {NavLink} from "react-router-dom";
 
 
 class App extends Component {
-    static propTypes = {
-        cookies: instanceOf(Cookies).isRequired
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -259,4 +253,4 @@ class App extends Component {
     }
 }
 
-export default withCookies(App);
+export default App;

@@ -7,14 +7,18 @@ class Product extends React.Component {
         super(props);
         this.productId = this.props.match.params.productId;
         this.state = {
-            product: {}
+            product: {},
+            imageLink: ""
         }
     }
 
     componentWillMount() {
         fetch("http://localhost:8080/product_information/" + this.productId)
             .then(res => res.json())
-            .then(data => this.setState({product: data}))
+            .then(data => this.setState({product: data, imageLink: data.imageLink + "?rnd=" + Math.random()},
+                () => {
+                }
+            ))
             .catch(e => console.log(e))
         /*
         date: 1553832000000
@@ -50,13 +54,16 @@ price: 150
     }
 
     singleProductArea() {
+        console.log("$$$" + this.state.imageLink);
         return <div className="product_image_area">
             <div className="container">
                 <div className="row s_product_inner">
                     <div className="col-lg-6">
-                        <div className="owl-carousel owl-theme s_Product_carousel">
+                        {/*<div className="owl-carousel owl-theme s_Product_carousel">*/}
+                        <div>
                             <div className="single-prd-item">
-                                <img className="img-fluid" src={this.state.product.imageLink} alt=""/>
+                                <img className="img-fluid" width={"100%"}
+                                     src={this.state.imageLink} alt=""/>
                             </div>
                         </div>
                     </div>
