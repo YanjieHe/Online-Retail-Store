@@ -10,9 +10,10 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            trendingProducts: []
+            trendingProducts: [],
+            bestSellers: []
         };
-        this.trendingProduct = this.trendingProduct.bind(this);
+        this.productSquare = this.productSquare.bind(this);
     }
 
     componentDidMount() {
@@ -20,9 +21,13 @@ class App extends Component {
             .then(res => res.json())
             .then(data => this.setState({trendingProducts: data}))
             .catch(e => console.log(e))
+        fetch("http://localhost:8080/best_sellers/?amount=8")
+            .then(res => res.json())
+            .then(data => this.setState({bestSellers: data}))
+            .catch(e => console.log(e))
     }
 
-    trendingProduct(productId, title, imageLink, price) {
+    productSquare(productId, title, imageLink, price) {
         return (<div className="col-md-6 col-lg-4 col-xl-3">
             <div className="card text-center card-product">
                 <div className="card-product__img">
@@ -113,7 +118,7 @@ class App extends Component {
                             </div>
                             <div className="row">
                                 {this.state.trendingProducts.map(product =>
-                                    this.trendingProduct(product.id, product.name, product.imageLink, product.price))}
+                                    this.productSquare(product.id, product.name, product.imageLink, product.price))}
                             </div>
                         </div>
                     </section>
@@ -135,8 +140,18 @@ class App extends Component {
                         </div>
                     </section>
 
-                    <BestSellers/>
-
+                    <section className="section-margin calc-60px">
+                        <div className="container">
+                            <div className="section-intro pb-60px">
+                                <p>Popular Item in the market</p>
+                                <h2>Best <span className="section-intro__style">Sellers</span></h2>
+                            </div>
+                            <div className="row">
+                                {this.state.bestSellers.map(product =>
+                                    this.productSquare(product.id, product.name, product.imageLink, product.price))}
+                            </div>
+                        </div>
+                    </section>
                     <section className="blog">
                         <div className="container">
                             <div className="section-intro pb-60px">
