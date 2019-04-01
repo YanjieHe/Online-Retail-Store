@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98101b4d-10bf-406e-92ef-48e49e13c284" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/controllers/ShoppingCartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/services/ShoppingCartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/ShoppingCartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/dao/ShoppingCartDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/models/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/models/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/models/ShoppingCartCompositeKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/models/ShoppingCartCompositeKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/controllers/ShoppingCartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OnlineRetailStore/src/main/java/com/retail/store/controllers/ShoppingCartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Product.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="91" column="59" lean-forward="true" selection-start-line="91" selection-start-column="59" selection-end-line="91" selection-end-column="59" />
+            <state relative-caret-position="189">
+              <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -37,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Product.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+            <state relative-caret-position="357">
+              <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -230,15 +221,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553820269630</updated>
-      <workItem from="1553820271189" duration="44747000" />
+      <workItem from="1553820271189" duration="45796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44747000" />
+    <option name="totallyTimeSpent" value="45796000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
@@ -397,22 +388,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
+    <entry file="file://$PROJECT_DIR$/src/Product.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="91" column="59" lean-forward="true" selection-start-line="91" selection-start-column="59" selection-end-line="91" selection-end-column="59" />
+        <state relative-caret-position="357">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Product.js">
+    <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+        <state relative-caret-position="189">
+          <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>

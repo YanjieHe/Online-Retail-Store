@@ -20,16 +20,11 @@ class Product extends React.Component {
             ))
             .catch(e => console.log(e))
         /*
-        date: 1553832000000
-​
-description: ""
-​
+date: 1553832000000
+description: ""​
 id: 7
-​
-imageLink: "img/product/product7.png"
-​
+imageLink: "img/product/product7.png"​
 name: "Blutooth Speaker"
-​
 price: 150
          */
     }
