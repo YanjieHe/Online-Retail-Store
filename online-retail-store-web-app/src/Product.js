@@ -1,14 +1,28 @@
 import React from 'react';
 import Header from "./Header";
 import Footer from './Footer'
+import {withRouter} from 'react-router-dom';
+import {instanceOf} from "prop-types";
+import {withCookies, Cookies} from "react-cookie";
 
 class Product extends React.Component {
+
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     constructor(props) {
         super(props);
         this.productId = this.props.match.params.productId;
+        const {cookies} = props;
         this.state = {
-            product: {}
-        }
+            product: {},
+            customer: {},
+            sessionId: cookies.get('sessionId') || '',
+            quantity: "1"
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.addToCart = this.addToCart.bind(this);
     }
 
     componentWillMount() {
@@ -27,6 +41,48 @@ imageLink: "img/product/product7.png"​
 name: "Blutooth Speaker"
 price: 150
          */
+        fetch('http://localhost:8080/customer_information/' + this.state.sessionId, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                this.setState({customer: data})
+            })
+    }
+
+    addToCart(event) {
+        console.log(JSON.stringify(this.state.customer));
+        if (Object.keys(this.state.customer).length === 0) {
+            this.props.history.push('/login');
+        } else {
+            let customerId = this.state.customer.id;
+            let productId = this.state.productId;
+        }
+        // fetch('http://localhost:8080/put_product_in_cart', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         customerId
+        //         password: this.state.password
+        //     })
+        // })
+        //     .then(res => {
+        //         if (res.ok) {
+        //             return res.text();
+        //         }
+        //     })
+        event.preventDefault();
+    }
+
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value})
     }
 
     renderBannerArea() {
@@ -79,13 +135,15 @@ price: 150
                                     onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                     className="increase items-count" type="button"><i className="ti-angle-left"></i>
                                 </button>
-                                <input type="text" name="qty" id="sst" size="2" maxLength="12" value="1"
+                                <input type="text" name="quantity" id="sst" size="2" maxLength="12"
+                                       value={this.state.quantity}
+                                       onChange={this.handleChange}
                                        title="Quantity:" className="input-text qty"/>
                                 <button
                                     onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                                     className="reduced items-count" type="button"><i className="ti-angle-right"></i>
                                 </button>
-                                <a className="button primary-btn" href="#">Add to Cart</a>
+                                <a className="button primary-btn" onClick={this.addToCart}>Add to Cart</a>
                             </div>
                             <div className="card_area d-flex align-items-center">
                                 <a className="icon_btn" href="#"><i className="lnr lnr lnr-diamond"></i></a>
@@ -1144,4 +1202,4 @@ price: 150
     }
 }
 
-export default Product;
+export default withRouter(withCookies(Product));
