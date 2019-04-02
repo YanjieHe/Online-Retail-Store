@@ -80,6 +80,7 @@ price: 150
                     }
                 }).then(text => console.log(text))
             this.props.history.push('/shopping_cart');
+            this.forceUpdate();
         }
 
         event.preventDefault();
