@@ -24,7 +24,7 @@ class ShoppingCart extends React.Component {
     //     this.componentWillMount();
     // }
 
-    componentWillMount() {
+    componentDidMount() {
         fetch('http://localhost:8080/customer_information/' + this.state.sessionId, {
             method: 'GET',
             headers: {
