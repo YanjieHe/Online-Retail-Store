@@ -55,8 +55,6 @@ price: 150
     }
 
     addToCart(event) {
-        console.log("$$$" + JSON.stringify(this.state.customer));
-        console.log("$$$" + JSON.stringify(this.state.product));
         if (Object.keys(this.state.customer).length === 0) {
             this.props.history.push('/login');
         } else {
@@ -78,9 +76,8 @@ price: 150
                     if (res.ok) {
                         return res.text();
                     }
-                }).then(text => console.log(text))
-            this.props.history.push('/shopping_cart');
-            this.forceUpdate();
+                }).then(text => console.log(text));
+            this.props.history.push({pathname: '/shopping_cart', state: true});
         }
 
         event.preventDefault();
@@ -148,7 +145,7 @@ price: 150
                                     // onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                                     className="reduced items-count" type="button"><i className="ti-angle-right"></i>
                                 </button>
-                                <a className="button primary-btn" onClick={this.addToCart}>Add to Cart</a>
+                                <a className="button primary-btn" href="#" onClick={this.addToCart}>Add to Cart</a>
                             </div>
                             <div className="card_area d-flex align-items-center">
                                 <a className="icon_btn" href="#"><i className="lnr lnr lnr-diamond"></i></a>

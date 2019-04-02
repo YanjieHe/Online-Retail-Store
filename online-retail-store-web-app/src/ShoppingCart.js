@@ -16,15 +16,21 @@ class ShoppingCart extends React.Component {
             sessionId: cookies.get('sessionId') || '',
             customer: {},
             cartItems: [],
-            quantities: []
+            quantities: [],
+            needRefresh: this.props.location.state,
+            country: "United States",
+            zipCode: ""
         }
     }
 
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     this.componentWillMount();
-    // }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.needRefresh) {
+            console.log("$$$refresh");
+            this.setState({needRefresh: false}, this.getData);
+        }
+    }
 
-    componentDidMount() {
+    getData() {
         fetch('http://localhost:8080/customer_information/' + this.state.sessionId, {
             method: 'GET',
             headers: {
@@ -56,7 +62,11 @@ class ShoppingCart extends React.Component {
                             })
                         });
                 })
-            })
+            });
+    }
+
+    componentDidMount() {
+        this.getData();
     }
 
     renderBannerArea() {
@@ -94,15 +104,26 @@ class ShoppingCart extends React.Component {
             </td>
             <td>
                 <div className="product_count">
-                    <input type="text" name="qty" id="sst" maxLength="12" value={this.state.quantities[productId]}
+                    <input type="text" name="qty" id="sst" maxLength="12"
+                           value={this.state.quantities[productId]}
                            title="Quantity:"
                            className="input-text qty"/>
                     <button
-                        onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                        onClick={(event) => {
+                            let quantities = this.state.quantities;
+                            quantities[productId] = quantities[productId] + 1;
+                            this.setState({quantities: quantities});
+                        }}
                         className="increase items-count" type="button"><i
                         className="lnr lnr-chevron-up"></i></button>
                     <button
-                        onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                        onClick={(event) => {
+                            let quantities = this.state.quantities;
+                            if (quantities[productId] > 0) {
+                                quantities[productId] = quantities[productId] - 1;
+                                this.setState({quantities: quantities});
+                            }
+                        }}
                         className="reduced items-count" type="button"><i
                         className="lnr lnr-chevron-down"></i></button>
                 </div>
@@ -119,6 +140,67 @@ class ShoppingCart extends React.Component {
             money = money + this.state.quantities[item.product.productId] * item.product.price
         });
         return money;
+    }
+
+    renderStates() {
+        if (this.state.country === "United States") {
+            return <select className="shipping_select">
+                {/*<option value="Alabama">Alabama</option>*/}
+                {/*<option value="Alaska">Alaska</option>*/}
+                {/*<option value="Arizona">Arizona</option>*/}
+                {/*<option value="Arkansas">Arkansas</option>*/}
+                {/*<option value="California">California</option>*/}
+                {/*<option value="Colorado">Colorado</option>*/}
+                {/*<option value="Connecticut">Connecticut</option>*/}
+                {/*<option value="Delaware">Delaware</option>*/}
+                {/*<option value="Florida">Florida</option>*/}
+                {/*<option value="Georgia">Georgia</option>*/}
+                {/*<option value="Hawaii">Hawaii</option>*/}
+                {/*<option value="Idaho">Idaho</option>*/}
+                {/*<option value="Illinois">Illinois</option>*/}
+                {/*<option value="Indiana">Indiana</option>*/}
+                {/*<option value="Iowa">Iowa</option>*/}
+                {/*<option value="Kansas">Kansas</option>*/}
+                {/*<option value="Kentucky">Kentucky</option>*/}
+                {/*<option value="Louisiana">Louisiana</option>*/}
+                {/*<option value="Maine">Maine</option>*/}
+                {/*<option value="Maryland">Maryland</option>*/}
+                {/*<option value="Massachusetts">Massachusetts</option>*/}
+                {/*<option value="Michigan">Michigan</option>*/}
+                {/*<option value="Minnesota">Minnesota</option>*/}
+                {/*<option value="Mississippi">Mississippi</option>*/}
+                {/*<option value="Missouri">Missouri</option>*/}
+                {/*<option value="Montana">Montana</option>*/}
+                {/*<option value="Nebraska">Nebraska</option>*/}
+                {/*<option value="Nevada">Nevada</option>*/}
+                {/*<option value="New Hampshire">New Hampshire</option>*/}
+                {/*<option value="New Jersey">New Jersey</option>*/}
+                {/*<option value="New Mexico">New Mexico</option>*/}
+                {/*<option value="New York">New York</option>*/}
+                {/*<option value="North Carolina">North Carolina</option>*/}
+                {/*<option value="North Dakota">North Dakota</option>*/}
+                {/*<option value="Ohio">Ohio</option>*/}
+                {/*<option value="Oklahoma">Oklahoma</option>*/}
+                {/*<option value="Oregon">Oregon</option>*/}
+                {/*<option value="Pennsylvania">Pennsylvania</option>*/}
+                {/*<option value="Rhode Island">Rhode Island</option>*/}
+                {/*<option value="South Carolina">South Carolina</option>*/}
+                {/*<option value="South Dakota">South Dakota</option>*/}
+                {/*<option value="Tennessee">Tennessee</option>*/}
+                {/*<option value="Texas">Texas</option>*/}
+                {/*<option value="Utah">Utah</option>*/}
+                {/*<option value="Vermont">Vermont</option>*/}
+                {/*<option value="Virginia">Virginia</option>*/}
+                {/*<option value="Washington">Washington</option>*/}
+                {/*<option value="West Virginia">West Virginia</option>*/}
+                {/*<option value="Wisconsin">Wisconsin</option>*/}
+                {/*<option value="Wyoming">Wyoming</option>*/}
+                {/*<option value="District of Columbia">District of Columbia</option>*/}
+                <option value="Washington DC">Washington DC</option>
+                <option value="Virginia">Virginia</option>
+                <option value="Maryland">Maryland</option>
+            </select>
+        }
     }
 
     render() {
@@ -197,17 +279,14 @@ class ShoppingCart extends React.Component {
                                             </ul>
                                             <h6>Calculate Shipping <i className="fa fa-caret-down"
                                                                       aria-hidden="true"></i></h6>
-                                            <select className="shipping_select">
-                                                <option value="1">Bangladesh</option>
-                                                <option value="2">India</option>
-                                                <option value="4">Pakistan</option>
+                                            <select className="shipping_select" value={this.state.country}>
+                                                <option value="Canada">Canada</option>
+                                                <option value="China">China</option>
+                                                <option value="United States">United States</option>
                                             </select>
-                                            <select className="shipping_select">
-                                                <option value="1">Select a State</option>
-                                                <option value="2">Select a State</option>
-                                                <option value="4">Select a State</option>
-                                            </select>
-                                            <input type="text" placeholder="Postcode/Zipcode"/>
+                                            {this.renderStates()}
+                                            <input type="text" placeholder="Postcode/Zipcode"
+                                                   value={this.state.zipCode}/>
                                             <a className="gray_btn" href="#">Update Details</a>
                                         </div>
                                     </td>

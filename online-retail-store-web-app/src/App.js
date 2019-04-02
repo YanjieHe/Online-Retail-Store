@@ -51,7 +51,9 @@ class App extends Component {
                 </div>
                 <div className="card-body">
                     <p>Accessories</p>
-                    <h4 className="card-product__title"><a href="single-product.html">{title}</a></h4>
+                    <h4 className="card-product__title">
+                        <NavLink to={"/product/" + productId}>{title}</NavLink>
+                    </h4>
                     <p className="card-product__price">${price}</p>
                 </div>
             </div>
