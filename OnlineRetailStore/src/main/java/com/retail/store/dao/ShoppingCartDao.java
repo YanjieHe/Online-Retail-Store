@@ -1,11 +1,15 @@
 package com.retail.store.dao;
 
+import com.retail.store.models.Product;
 import com.retail.store.models.ShoppingCart;
 import com.retail.store.models.ShoppingCartCompositeKey;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
 
 @Repository
 public class ShoppingCartDao {
@@ -53,5 +57,18 @@ public class ShoppingCartDao {
 
         session.getTransaction().commit();
         session.close();
+    }
+
+    public ArrayList<ShoppingCart> getItemsInTheCart(int customerId) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String hql = "FROM ShoppingCart WHERE customerId = '" + customerId + "'";
+        Query query = session.createQuery(hql);
+        ArrayList<ShoppingCart> shoppingCarts = (ArrayList<ShoppingCart>) query.list();
+
+        session.getTransaction().commit();
+        session.close();
+        return shoppingCarts;
     }
 }

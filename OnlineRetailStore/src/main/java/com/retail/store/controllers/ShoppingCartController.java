@@ -1,6 +1,7 @@
 package com.retail.store.controllers;
 
 import com.retail.store.models.Product;
+import com.retail.store.services.CartItem;
 import com.retail.store.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,5 +27,12 @@ public class ShoppingCartController {
         Date date = GregorianCalendar.getInstance().getTime();
         shoppingCartService.putProduct(customerId, productId, quantities, date);
         return new ResponseEntity<>("ok", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/items_in_the_cart", method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<Object> getItemsInTheCart(int customerId) {
+        ArrayList<CartItem> cartItems = shoppingCartService.getItemsInTheCart(customerId);
+        return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 }

@@ -6,12 +6,14 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 import Login from "./Login";
 import Product from "./Product";
+import ShoppingCart from './ShoppingCart'
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={App}/>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/shopping_cart" component={ShoppingCart}/>
             <Route exact path="/product/:productId" component={Product}/>
         </Switch>
     </BrowserRouter>

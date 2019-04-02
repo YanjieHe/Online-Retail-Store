@@ -64,8 +64,8 @@ class Header extends React.Component {
                                             Checkout</a></li>
                                         <li className="nav-item"><a className="nav-link"
                                                                     href="confirmation.html">Confirmation</a></li>
-                                        <li className="nav-item"><a className="nav-link" href="cart.html">Shopping
-                                            Cart</a></li>
+                                        <li className="nav-item"><NavLink className="nav-link" to="/shopping_cart">Shopping
+                                            Cart</NavLink></li>
                                     </ul>
                                 </li>
                                 <li className="nav-item submenu dropdown">

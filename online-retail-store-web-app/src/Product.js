@@ -79,6 +79,7 @@ price: 150
                         return res.text();
                     }
                 }).then(text => console.log(text))
+            this.props.history.push('/shopping_cart');
         }
 
         event.preventDefault();
