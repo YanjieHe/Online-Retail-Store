@@ -20,9 +20,9 @@ class ShoppingCart extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        this.componentWillMount();
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     this.componentWillMount();
+    // }
 
     componentWillMount() {
         fetch('http://localhost:8080/customer_information/' + this.state.sessionId, {
