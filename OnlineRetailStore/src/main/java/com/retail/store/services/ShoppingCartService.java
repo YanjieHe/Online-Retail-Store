@@ -12,9 +12,9 @@ public class ShoppingCartService {
     @Autowired
     ShoppingCartDao shoppingCartDao;
 
-    public void putProduct(int customerId, int supplierId, int productId, int quantities, Date date) {
-        ShoppingCart shoppingCart = new ShoppingCart(customerId, supplierId, productId, quantities, date);
-        if (shoppingCartDao.read(customerId, supplierId, productId) == null) {
+    public void putProduct(int customerId, int productId, int quantities, Date date) {
+        ShoppingCart shoppingCart = new ShoppingCart(customerId, productId, quantities, date);
+        if (shoppingCartDao.read(customerId, productId) == null) {
             shoppingCartDao.createShoppingCart(shoppingCart);
         } else {
             shoppingCartDao.update(shoppingCart);

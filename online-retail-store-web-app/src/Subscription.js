@@ -13,8 +13,10 @@ class Subscription extends React.Component{
                               method="get" className="subscribe-form form-inline mt-5 pt-1">
                             <div className="form-group ml-sm-auto">
                                 <input className="form-control mb-1" type="email" name="EMAIL"
-                                       placeholder="Enter your email" onFocus="this.placeholder = ''"
-                                       onBlur="this.placeholder = 'Your Email Address '"/>
+                                       placeholder="Enter your email"
+                                       // onFocus="this.placeholder = ''"
+                                       // onBlur="this.placeholder = 'Your Email Address '"
+                                />
                                 <div className="info"></div>
                             </div>
                             <button className="button button-subscribe mr-auto mb-1" type="submit">Subscribe

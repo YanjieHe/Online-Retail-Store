@@ -16,7 +16,7 @@ public class ShoppingCartDao {
         try {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
-            Integer id = (Integer) session.save(shoppingCart);
+            ShoppingCartCompositeKey id = (ShoppingCartCompositeKey) session.save(shoppingCart);
             System.out.println("Shopping cart is created With Id::" + id);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -24,9 +24,9 @@ public class ShoppingCartDao {
         }
     }
 
-    public ShoppingCart read(int customerId, int supplierId, int productId) {
+    public ShoppingCart read(int customerId, int productId) {
         Session session = sessionFactory.openSession();
-        ShoppingCartCompositeKey shoppingCartCompositeKey = new ShoppingCartCompositeKey(customerId, supplierId, productId);
+        ShoppingCartCompositeKey shoppingCartCompositeKey = new ShoppingCartCompositeKey(customerId, productId);
         ShoppingCart shoppingCart = session.get(ShoppingCart.class, shoppingCartCompositeKey);
         session.close();
         return shoppingCart;
@@ -43,11 +43,11 @@ public class ShoppingCartDao {
         session.close();
     }
 
-    public void delete(int customerId, int supplierId, int productId) {
+    public void delete(int customerId, int productId) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        ShoppingCartCompositeKey shoppingCartCompositeKey = new ShoppingCartCompositeKey(customerId, supplierId, productId);
+        ShoppingCartCompositeKey shoppingCartCompositeKey = new ShoppingCartCompositeKey(customerId, productId);
         ShoppingCart shoppingCart = session.load(ShoppingCart.class, shoppingCartCompositeKey);
         session.delete(shoppingCart);
 

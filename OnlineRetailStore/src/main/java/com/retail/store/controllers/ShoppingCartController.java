@@ -20,13 +20,11 @@ public class ShoppingCartController {
     @RequestMapping(value = "/put_product_in_cart", method = RequestMethod.PUT)
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<Object> putProductInCart(@RequestBody Map<String, Object> params) {
-        System.out.println(params.get("customerId"));
-        Integer customerId = (Integer) params.get("customerId");
-        Integer supplierId = (Integer) params.get("supplierId");
-        Integer productId = (Integer) params.get("productId");
-        Integer quantities = (Integer) params.get("quantities");
+        Integer customerId = Integer.parseInt(params.get("customerId").toString());
+        Integer productId = Integer.parseInt(params.get("productId").toString());
+        Integer quantities = Integer.parseInt(params.get("quantities").toString());
         Date date = GregorianCalendar.getInstance().getTime();
-        shoppingCartService.putProduct(customerId, supplierId, productId, quantities, date);
+        shoppingCartService.putProduct(customerId, productId, quantities, date);
         return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 }

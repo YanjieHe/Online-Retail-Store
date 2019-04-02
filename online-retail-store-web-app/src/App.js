@@ -91,7 +91,7 @@ class App extends Component {
                         </div>
                         <div className="row">
                             {this.state.trendingProducts.map(product =>
-                                this.productSquare(product.id, product.name, product.imageLink, product.price))}
+                                this.productSquare(product.productId, product.name, product.imageLink, product.price))}
                         </div>
                     </div>
                 </section>
@@ -104,7 +104,7 @@ class App extends Component {
                         </div>
                         <div className="row">
                             {this.state.bestSellers.map(product =>
-                                this.productSquare(product.id, product.name, product.imageLink, product.price))}
+                                this.productSquare(product.productId, product.name, product.imageLink, product.price))}
                         </div>
                     </div>
                 </section>

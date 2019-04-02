@@ -8,17 +8,14 @@ public class ShoppingCartCompositeKey implements Serializable {
 
     protected Integer customerId;
 
-    protected Integer supplierId;
-
     protected Integer productId;
 
     public ShoppingCartCompositeKey() {
 
     }
 
-    public ShoppingCartCompositeKey(Integer customerId, Integer supplierId, Integer productId) {
+    public ShoppingCartCompositeKey(Integer customerId, Integer productId) {
         this.customerId = customerId;
-        this.supplierId = supplierId;
         this.productId = productId;
     }
 }

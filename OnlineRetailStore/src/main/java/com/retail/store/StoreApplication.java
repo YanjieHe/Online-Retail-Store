@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 @SpringBootApplication
@@ -50,33 +51,9 @@ public class StoreApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        insertProducts();
         insertCustomers();
         insertSuppliers();
         insertOrders();
-    }
-
-    void insertProducts() {
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(1, "Quartz Belt Watch", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product1.png", ""));
-        products.add(new Product(2, "Women Freshwash", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product2.png", ""));
-        products.add(new Product(3, "Room Flash Light", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product3.png", ""));
-        products.add(new Product(4, "Room Flash Light", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product4.png", ""));
-        products.add(new Product(5, "Man Office Bag", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product5.png", ""));
-        products.add(new Product(6, "Charging Car", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product6.png", ""));
-        products.add(new Product(7, "Blutooth Speaker", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product7.png", ""));
-        products.add(new Product(8, "Charging Car", 150.00,
-                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "img/product/product8.png", ""));
-        for (Product product : products) {
-            productService.createProduct(product);
-        }
     }
 
     void insertCustomers() {
@@ -160,16 +137,28 @@ public class StoreApplication implements CommandLineRunner {
     void insertOrders() {
         Random random = new Random();
         ArrayList<Order> orders = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Quartz Belt Watch");
+        names.add("Women Freshwash");
+        names.add("Room Flash Light");
+        names.add("Room Flash Light");
+        names.add("Man Office Bag");
+        names.add("Charging Car");
+        names.add("Bluetooth Speaker");
+        names.add("Charging Car");
         int orderId = 1;
-        for (int customerId = 1; customerId <= 4; customerId++) {
-            for (int supplierId = 1; supplierId <= 4; supplierId++) {
-                for (int productId = 1; productId <= 8; productId++) {
-                    if (random.nextInt() % 2 == 0) {
-                        orders.add(new Order(orderId, customerId, supplierId, productId, 150.0, 1,
-                                new GregorianCalendar(2019, Calendar.MARCH, 29).getTime(), "accepted"));
-                    }
-                }
+        for (int productId = 1; productId <= 8; productId++) {
+            int supplierId = Math.abs(random.nextInt()) % 4 + 1;
+            Date date = new GregorianCalendar(2019, Calendar.MARCH, 29).getTime();
+            products.add(new Product(productId, supplierId, names.get(productId - 1),
+                    150.00, date, "img/product/product" + productId + ".png", ""));
+            for (int customerId = 1; customerId <= 4; customerId++) {
+                orders.add(new Order(orderId, customerId, supplierId, productId, 150.0, 1, date, "accepted"));
             }
+        }
+        for (Product product : products) {
+            productService.createProduct(product);
         }
         for (Order order : orders) {
             orderService.createOrder(order);

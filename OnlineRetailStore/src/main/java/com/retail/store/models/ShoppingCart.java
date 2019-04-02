@@ -14,10 +14,6 @@ public class ShoppingCart {
     private Integer customerId;
 
     @Id
-    @Column(name = "Supplier_ID")
-    private Integer supplierId;
-
-    @Id
     @Column(name = "Product_ID")
     private Integer productId;
 
@@ -31,9 +27,8 @@ public class ShoppingCart {
 
     }
 
-    public ShoppingCart(Integer customerId, Integer supplierId, Integer productId, Integer quantities, Date date) {
+    public ShoppingCart(Integer customerId, Integer productId, Integer quantities, Date date) {
         this.customerId = customerId;
-        this.supplierId = supplierId;
         this.productId = productId;
         this.quantities = quantities;
         this.date = date;
@@ -45,14 +40,6 @@ public class ShoppingCart {
 
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
-    }
-
-    public Integer getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
     }
 
     public Integer getProductId() {
