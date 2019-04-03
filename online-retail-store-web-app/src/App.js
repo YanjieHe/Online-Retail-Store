@@ -6,7 +6,7 @@ import HeroBanner from "./HeroBanner";
 import HeroSlides from "./HeroSlides";
 import Subscription from "./Subscription";
 import LatestNews from "./LatestNews";
-
+import {Image, Row, Col, Container, Card, Jumbotron, Button} from 'react-bootstrap';
 
 class App extends Component {
     constructor(props) {
@@ -31,34 +31,45 @@ class App extends Component {
     }
 
     productSquare(productId, title, imageLink, price) {
-        return <div className="col-md-6 col-lg-4 col-xl-3">
-            <div className="card text-center card-product">
-                <div className="card-product__img">
-                    <img className="card-img" src={imageLink} alt=""/>
-                    <ul className="card-product__imgOverlay">
-                        <li>
-                            <NavLink to={"/product/" + productId}>
-                                <button><i className="ti-search"></i></button>
-                            </NavLink>
-                        </li>
-                        <li>
-                            <button><i className="ti-shopping-cart"></i></button>
-                        </li>
-                        <li>
-                            <button><i className="ti-heart"></i></button>
-                        </li>
-                    </ul>
-                </div>
-                <div className="card-body">
-                    <p>Accessories</p>
-                    <h4 className="card-product__title">
-                        <NavLink to={"/product/" + productId}>{title}</NavLink>
-                    </h4>
-                    <p className="card-product__price">${price}</p>
-                </div>
-            </div>
-        </div>
+        return <Col sm={3}>
+            <Card.Img variant="top" src={imageLink}/>
+            <Card.Body>
+                <Card.Title>Accessories</Card.Title>
+                <Card.Text>
+                    <p>{title}</p>
+                    <p>${price}</p>
+                </Card.Text>
+            </Card.Body>
+        </Col>
+        // return <div className="col-md-6 col-lg-4 col-xl-3">
+        //     <div className="card text-center card-product">
+        //         <div className="card-product__img">
+        //             <img className="card-img" src={imageLink} alt=""/>
+        //             <ul className="card-product__imgOverlay">
+        //                 <li>
+        //                     <NavLink to={"/product/" + productId}>
+        //                         <button><i className="ti-search"></i></button>
+        //                     </NavLink>
+        //                 </li>
+        //                 <li>
+        //                     <button><i className="ti-shopping-cart"></i></button>
+        //                 </li>
+        //                 <li>
+        //                     <button><i className="ti-heart"></i></button>
+        //                 </li>
+        //             </ul>
+        //         </div>
+        //         <div className="card-body">
+        //             <p>Accessories</p>
+        //             <h4 className="card-product__title">
+        //                 <NavLink to={"/product/" + productId}>{title}</NavLink>
+        //             </h4>
+        //             <p className="card-product__price">${price}</p>
+        //         </div>
+        //     </div>
+        // </div>
     }
+
 
     renderOffer() {
         return <section className="offer" id="parallax-1" data-anchor-target="#parallax-1"
@@ -82,39 +93,90 @@ class App extends Component {
     render() {
         return <div>
             <Header/>
-            <main className="site-main">
-                <HeroBanner/>
-                <HeroSlides/>
-                <section className="section-margin calc-60px">
-                    <div className="container">
-                        <div className="section-intro pb-60px">
-                            <p>Popular Item in the market</p>
-                            <h2>Trending <span className="section-intro__style">Product</span></h2>
-                        </div>
-                        <div className="row">
-                            {this.state.trendingProducts.map(product =>
-                                this.productSquare(product.productId, product.name, product.imageLink, product.price))}
-                        </div>
-                    </div>
-                </section>
-                {this.renderOffer()}
-                <section className="section-margin calc-60px">
-                    <div className="container">
-                        <div className="section-intro pb-60px">
-                            <p>Popular Item in the market</p>
-                            <h2>Best <span className="section-intro__style">Sellers</span></h2>
-                        </div>
-                        <div className="row">
-                            {this.state.bestSellers.map(product =>
-                                this.productSquare(product.productId, product.name, product.imageLink, product.price))}
-                        </div>
-                    </div>
-                </section>
-                <LatestNews/>
-                <Subscription/>
-            </main>
-            <Footer/>
+            <HeroBanner/>
+            <Row>
+                <Col>
+                    <Image src="img/home/hero-slide1.png" alt="" className="img-fluid"/>
+                </Col>
+                <Col>
+                    <img src="img/home/hero-slide2.png" alt="" className="img-fluid"/>
+                </Col>
+                <Col>
+                    <img src="img/home/hero-slide3.png" alt="" className="img-fluid"/>
+                </Col>
+            </Row>
+            <Container>
+                <p>Popular Item in the market</p>
+                <h2>Trending Product</h2>
+                <Row>
+                    {this.state.trendingProducts.map(product =>
+                        this.productSquare(product.productId, product.name, product.imageLink, product.price))}
+                </Row>
+            </Container>
+            <Jumbotron style={{"background": "url('/img/home/parallax-bg.png') no-repeat"}} fluid>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <Container>
+                    <h1>Up To 50% Off</h1>
+                    <h2>Winter Sale</h2>
+                    <p> Him she'd let them sixth saw light </p>
+                    <p>
+                        <Button variant="primary">Shop Now</Button>
+                    </p>
+                </Container>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </Jumbotron>
+            <Container>
+                <p>Popular Item in the market</p>
+                <h2>Best Sellers</h2>
+                <Row>
+                    {this.state.trendingProducts.map(product =>
+                        this.productSquare(product.productId, product.name, product.imageLink, product.price))}
+                </Row>
+            </Container>
         </div>
+        // return
+        // < div >
+        // <Header/>
+        // <main className="site-main">
+        // <HeroBanner/>
+        // <HeroSlides/>
+        // <section className="section-margin calc-60px">
+        // <div className="container">
+        // <div className="section-intro pb-60px">
+        // <p>Popular Item in the market</p>
+        // <h2>Trending <span className="section-intro__style">Product</span></h2>
+        // </div>
+        // <div className="row">
+        // {this.state.trendingProducts.map(product =>
+        //                         this.productSquare(product.productId, product.name, product.imageLink, product.price))}
+        //                 </div>
+        //             </div>
+        //         </section>
+        //         {this.renderOffer()}
+        //         <section className="section-margin calc-60px">
+        //             <div className="container">
+        //                 <div className="section-intro pb-60px">
+        //                     <p>Popular Item in the market</p>
+        //                     <h2>Best <span className="section-intro__style">Sellers</span></h2>
+        //                 </div>
+        //                 <div className="row">
+        //                     {this.state.bestSellers.map(product =>
+        //                         this.productSquare(product.productId, product.name, product.imageLink, product.price))}
+        //                 </div>
+        //             </div>
+        //         </section>
+        //         <LatestNews/>
+        //         <Subscription/>
+        //     </main>
+        //     <Footer/>
+        // </div>
     }
 }
 
