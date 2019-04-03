@@ -97,7 +97,7 @@ class Login extends React.Component {
                                            onBlur="this.placeholder = 'email'"/>
                                 </div>
                                 <div className="col-md-12 form-group">
-                                    <input type="text" className="form-control" id="name" name="password"
+                                    <input type="password" className="form-control" id="name" name="password"
                                            placeholder="Password" onFocus="this.placeholder = ''"
                                            value={this.state.password}
                                            onChange={this.handleChange}

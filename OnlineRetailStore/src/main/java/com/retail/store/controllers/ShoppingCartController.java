@@ -1,6 +1,5 @@
 package com.retail.store.controllers;
 
-import com.retail.store.models.Product;
 import com.retail.store.services.CartItem;
 import com.retail.store.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +33,12 @@ public class ShoppingCartController {
     public ResponseEntity<Object> getItemsInTheCart(int customerId) {
         ArrayList<CartItem> cartItems = shoppingCartService.getItemsInTheCart(customerId);
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<Object> checkOut(int customerId) {
+        shoppingCartService.placeOrders(customerId);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

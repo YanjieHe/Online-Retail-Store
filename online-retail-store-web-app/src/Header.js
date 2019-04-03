@@ -103,8 +103,8 @@ class Header extends React.Component {
                                     <button><i className="ti-search"></i></button>
                                 </li>
                                 <li className="nav-item">
-                                    <button><i className="ti-shopping-cart"></i><span
-                                        className="nav-shop__circle">3</span>
+                                    <button><i className="ti-shopping-cart"></i>
+                                        {/*<span className="nav-shop__circle">3</span>*/}
                                     </button>
                                 </li>
                                 {this.state.sessionId === ''

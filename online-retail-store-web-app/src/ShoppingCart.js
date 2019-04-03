@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import {instanceOf} from "prop-types";
 import {Cookies, withCookies} from "react-cookie";
+import {withRouter} from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
     static propTypes = {
@@ -20,7 +21,9 @@ class ShoppingCart extends React.Component {
             needRefresh: this.props.location.state,
             country: "United States",
             zipCode: ""
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.checkout = this.checkout.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -63,6 +66,10 @@ class ShoppingCart extends React.Component {
                         });
                 })
             });
+    }
+
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value});
     }
 
     componentDidMount() {
@@ -203,6 +210,26 @@ class ShoppingCart extends React.Component {
         }
     }
 
+    checkout() {
+        fetch('http://localhost:8080/checkout/?customerId=' + this.state.customer.id, {
+                method: 'POST',
+                headers:
+                    {
+                        'Accept':
+                            'application/json',
+                        'Content-Type':
+                            'application/json',
+                    }
+
+            }
+        )
+            .then(res => res.text())
+            .then(text => {
+                alert("You have successfully placed your order!");
+                this.props.history.push("/");
+            });
+    }
+
     render() {
         return <div>
             <Header/>
@@ -286,7 +313,9 @@ class ShoppingCart extends React.Component {
                                             </select>
                                             {this.renderStates()}
                                             <input type="text" placeholder="Postcode/Zipcode"
-                                                   value={this.state.zipCode}/>
+                                                   value={this.state.zipCode}
+                                                   name="zipCode"
+                                                   onChange={this.handleChange}/>
                                             <a className="gray_btn" href="#">Update Details</a>
                                         </div>
                                     </td>
@@ -304,7 +333,9 @@ class ShoppingCart extends React.Component {
                                     <td>
                                         <div className="checkout_btn_inner d-flex align-items-center">
                                             <a className="gray_btn" href="#">Continue Shopping</a>
-                                            <a className="primary-btn ml-2" href="#">Proceed to checkout</a>
+                                            <a className="primary-btn ml-2" href="#" onClick={this.checkout}>
+                                                <small>Proceed to checkout</small>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -319,4 +350,4 @@ class ShoppingCart extends React.Component {
     }
 }
 
-export default withCookies(ShoppingCart);
+export default withRouter(withCookies(ShoppingCart));
