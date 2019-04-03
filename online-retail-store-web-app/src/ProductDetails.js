@@ -4,8 +4,9 @@ import Footer from './Footer'
 import {withRouter} from 'react-router-dom';
 import {instanceOf} from "prop-types";
 import {withCookies, Cookies} from "react-cookie";
+import {Jumbotron, Button, Container, Row, Col, Form} from "react-bootstrap";
 
-class Product extends React.Component {
+class ProductDetails extends React.Component {
 
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
@@ -106,56 +107,89 @@ price: 150
     }
 
     singleProductArea() {
-        return <div className="product_image_area">
-            <div className="container">
-                <div className="row s_product_inner">
-                    <div className="col-lg-6">
-                        {/*<div className="owl-carousel owl-theme s_Product_carousel">*/}
-                        <div>
-                            <div className="single-prd-item">
-                                <img className="img-fluid" width={"100%"}
-                                     src={this.state.product.imageLink} alt=""/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-5 offset-lg-1">
-                        <div className="s_product_text">
-                            <h3>{this.state.product.name}</h3>
-                            <h2>$149.99</h2>
-                            <ul className="list">
-                                <li><a className="active" href="#"><span>Category</span> : Household</a></li>
-                                <li><a href="#"><span>Availibility</span> : In Stock</a></li>
-                            </ul>
-                            <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are
-                                looking for
-                                something that can make your interior look awesome, and at the same time give you the
-                                pleasant warm feeling
-                                during the winter.</p>
-                            <div className="product_count">
-                                <label htmlFor="qty">Quantity:</label>
-                                <button
-                                    // onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                    className="increase items-count" type="button"><i className="ti-angle-left"></i>
-                                </button>
-                                <input type="text" name="quantity" id="sst" size="2" maxLength="12"
-                                       value={this.state.quantity}
-                                       onChange={this.handleChange}
-                                       title="Quantity:" className="input-text qty"/>
-                                <button
-                                    // onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                    className="reduced items-count" type="button"><i className="ti-angle-right"></i>
-                                </button>
-                                <a className="button primary-btn" href="#" onClick={this.addToCart}>Add to Cart</a>
-                            </div>
-                            <div className="card_area d-flex align-items-center">
-                                <a className="icon_btn" href="#"><i className="lnr lnr lnr-diamond"></i></a>
-                                <a className="icon_btn" href="#"><i className="lnr lnr lnr-heart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        return <Container>
+            <Row>
+                <Col><img className="img-fluid" width={"100%"}
+                          src={this.state.product.imageLink} alt=""/></Col>
+                <Col style={{"margin-left": "50px", "margin-right": "50px"}}>
+                    <h3>{this.state.product.name}</h3>
+                    <h2>${this.state.product.price}</h2>
+                    <ul className="list">
+                        <li><a className="active" href="#"><span>Category</span> : Household</a></li>
+                        <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                    </ul>
+                    <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are
+                        looking for
+                        something that can make your interior look awesome, and at the same time give you the
+                        pleasant warm feeling
+                        during the winter.</p>
+                    <Form>
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                            <Row>
+                                <Col>
+                                    <Form.Label>Quantity: </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Control type="text" value="1" placeholder=""/>
+                                </Col>
+                                <Col> <Button variant="primary">Add to Cart</Button>
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
+        // return <div className="product_image_area">
+        //     <div className="container">
+        //         <div className="row s_product_inner">
+        //             <div className="col-lg-6">
+        //                 {/*<div className="owl-carousel owl-theme s_Product_carousel">*/}
+        //                 <div>
+        //                     <div className="single-prd-item">
+        //                         <img className="img-fluid" width={"100%"}
+        //                              src={this.state.product.imageLink} alt=""/>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //             <div className="col-lg-5 offset-lg-1">
+        //                 <div className="s_product_text">
+        //                     <h3>{this.state.product.name}</h3>
+        //                     <h2>$149.99</h2>
+        //                     <ul className="list">
+        //                         <li><a className="active" href="#"><span>Category</span> : Household</a></li>
+        //                         <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+        //                     </ul>
+        //                     <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are
+        //                         looking for
+        //                         something that can make your interior look awesome, and at the same time give you the
+        //                         pleasant warm feeling
+        //                         during the winter.</p>
+        //                     <div className="product_count">
+        //                         <label htmlFor="qty">Quantity:</label>
+        //                         <button
+        //                             // onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+        //                             className="increase items-count" type="button"><i className="ti-angle-left"></i>
+        //                         </button>
+        //                         <input type="text" name="quantity" id="sst" size="2" maxLength="12"
+        //                                value={this.state.quantity}
+        //                                onChange={this.handleChange}
+        //                                title="Quantity:" className="input-text qty"/>
+        //                         <button
+        //                             // onClick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+        //                             className="reduced items-count" type="button"><i className="ti-angle-right"></i>
+        //                         </button>
+        //                         <a className="button primary-btn" href="#" onClick={this.addToCart}>Add to Cart</a>
+        //                     </div>
+        //                     <div className="card_area d-flex align-items-center">
+        //                         <a className="icon_btn" href="#"><i className="lnr lnr lnr-diamond"></i></a>
+        //                         <a className="icon_btn" href="#"><i className="lnr lnr lnr-heart"></i></a>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
     }
 
     productDescription() {
@@ -647,7 +681,19 @@ price: 150
     render() {
         return <div>
             <Header/>
-            {this.renderBannerArea()}
+            <Jumbotron style={{"background-color": "rgb(241, 246, 247)"}}>
+                <Container>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1 align="center">Shop Single </h1>
+                    <p align="center"> Home - Shop Single </p>
+                    <br/>
+                    <br/>
+                    <br/>
+                </Container>
+            </Jumbotron>
+            {/*{this.renderBannerArea()}*/}
             {this.singleProductArea()}
             {this.productDescription()}
             {this.relatedProductArea()}
@@ -656,4 +702,4 @@ price: 150
     }
 }
 
-export default withRouter(withCookies(Product));
+export default withRouter(withCookies(ProductDetails));

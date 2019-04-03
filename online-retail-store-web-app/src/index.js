@@ -5,7 +5,7 @@ import App from './App';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 import Login from "./Login";
-import Product from "./Product";
+import Product from "./ProductDetails";
 import ShoppingCart from './ShoppingCart'
 
 ReactDOM.render(

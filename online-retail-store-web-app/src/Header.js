@@ -6,7 +6,7 @@ import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstr
 
 class Header extends React.Component {
     render() {
-        return <Navbar bg="light" expand="lg" sticky="top">
+        return <Navbar bg="#FFFFFF" expand="lg" sticky="top">
             <Navbar.Brand href="#home"><img
                 src="img/logo.png"
                 height="30"

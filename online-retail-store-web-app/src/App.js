@@ -36,7 +36,7 @@ class App extends Component {
             <Card.Body>
                 <Card.Title>Accessories</Card.Title>
                 <Card.Text>
-                    <p>{title}</p>
+                    <p><NavLink to={"/product/" + productId}>{title}</NavLink></p>
                     <p>${price}</p>
                 </Card.Text>
             </Card.Body>
@@ -93,16 +93,17 @@ class App extends Component {
     render() {
         return <div>
             <Header/>
+            <br/>
             <HeroBanner/>
             <Row>
                 <Col>
                     <Image src="img/home/hero-slide1.png" alt="" className="img-fluid"/>
                 </Col>
                 <Col>
-                    <img src="img/home/hero-slide2.png" alt="" className="img-fluid"/>
+                    <Image src="img/home/hero-slide2.png" alt="" className="img-fluid"/>
                 </Col>
                 <Col>
-                    <img src="img/home/hero-slide3.png" alt="" className="img-fluid"/>
+                    <Image src="img/home/hero-slide3.png" alt="" className="img-fluid"/>
                 </Col>
             </Row>
             <Container>
